@@ -12,7 +12,8 @@ app.get("/",function(req,res){
 
         response.on("data", function(data){
             //console.log(data); //data printed in hexadecimal numbers
-            const weatherData = JSON.parse(data) //data(string) into actal js object.(json format)
+            //const weatherData = JSON.parse(data) //data(string) into actal js object.(json format)
+            //error: JSON format not matching; token 'e'?
             //console.log(weatherData); //check parsed data
             //make javascript into a string: JSON.stringify()
 
