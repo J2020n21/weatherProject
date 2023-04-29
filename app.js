@@ -10,15 +10,18 @@ app.get("/",function(req,res){
     https.get(url, function(response){
         console.log(response.statusCode);
 
-        response.on("data", function(data){
-            //console.log(data); //data printed in hexadecimal numbers
-            //const weatherData = JSON.parse(data) //data(string) into actal js object.(json format)
-            //error: JSON format not matching; token 'e'?
-            //console.log(weatherData); //check parsed data
-            //make javascript into a string: JSON.stringify()
+        response.on("data", function(data){//response data
+            //get JSON object
+            const weatherData = JSON.parse(data); //console.log(weatherData); //check
+            const temp = weatherData.main.temp;
+            const description = weatherData.weather[0].description;
+            const icon_code = weatherData.weather[0].icon;
+            const icon_url = "https://openweathermap.org/img/wn/"+icon_code+"@2x.png"
 
-           // const temp = weatherData.main.temp
-           // console.log(temp);
+            res.write("<h1>The temperature is :" +temp+"</h1>");
+            res.write("<h2>The weather is currently " + description+"<h2>")
+            res.write("<img src="+ icon_url+"></img>");
+            res.send();
 
         });
     });
